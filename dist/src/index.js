@@ -140,6 +140,8 @@ var CasbinMongooseAdapter = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         CasbinRule = this.getDbModel(this.collectionName);
+                        // clear policiesStorage cache to avoid policies saving failure when adding same policies again
+                        this.policiesStorage = {};
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);

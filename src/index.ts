@@ -89,6 +89,9 @@ export class CasbinMongooseAdapter implements Adapter {
   async removeFilteredPolicy(sec: string, ptype: string, fieldIndex: number, ...fieldValues: string[]): Promise<void> {
     const CasbinRule = this.getDbModel(this.collectionName);
 
+    // clear policiesStorage cache to avoid policies saving failure when adding same policies again
+    this.policiesStorage = {};
+
     try {
       const where: ICasbinRule = ptype ? {p_type: ptype} : {};
 
